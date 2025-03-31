@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { withDefaults } from 'vue'
 
-type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link'
+type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link ' | 'btn01' | 'btn02'
 type ButtonSize = 'large' | 'middle' | 'small'
 
 withDefaults(defineProps<{
@@ -21,13 +21,10 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <button
-    class="btn"
-    :class="[`btn-${type}`, `btn-${size}`, { 'btn-loading': loading, 'btn-disabled': disabled }]"
-    :disabled="disabled || loading"
-    :type="htmlType"
-  >
+  <button class="btn" :class="[`btn-${type}`, `btn-${size}`, { 'btn-loading': loading, 'btn-disabled': disabled }]"
+    :disabled="disabled || loading" :type="htmlType">
     <span v-if="loading" class="btn-loading-icon" />
+
     <slot />
   </button>
 </template>
@@ -56,9 +53,11 @@ withDefaults(defineProps<{
   border-color: var(--btn-default-border);
   color: var(--btn-default-color);
 }
+
 .btn-default:not(.btn-disabled):hover {
   opacity: 0.8;
 }
+
 .btn-default:not(.btn-disabled):active {
   opacity: 0.9;
 }
@@ -68,9 +67,11 @@ withDefaults(defineProps<{
   border-color: var(--btn-primary-border);
   color: var(--btn-primary-color);
 }
+
 .btn-primary:not(.btn-disabled):hover {
   opacity: 0.8;
 }
+
 .btn-primary:not(.btn-disabled):active {
   opacity: 0.9;
 }
@@ -81,9 +82,11 @@ withDefaults(defineProps<{
   border-style: dashed;
   color: var(--btn-dashed-color);
 }
+
 .btn-dashed:not(.btn-disabled):hover {
   opacity: 0.8;
 }
+
 .btn-dashed:not(.btn-disabled):active {
   opacity: 0.9;
 }
@@ -93,9 +96,11 @@ withDefaults(defineProps<{
   border-color: transparent;
   color: var(--btn-text-color);
 }
+
 .btn-text:not(.btn-disabled):hover {
   opacity: 0.8;
 }
+
 .btn-text:not(.btn-disabled):active {
   opacity: 0.9;
 }
@@ -105,10 +110,12 @@ withDefaults(defineProps<{
   border-color: transparent;
   color: var(--btn-link-color);
 }
+
 .btn-link:not(.btn-disabled):hover {
   opacity: 0.8;
   text-decoration: underline;
 }
+
 .btn-link:not(.btn-disabled):active {
   opacity: 0.9;
 }
@@ -142,13 +149,33 @@ withDefaults(defineProps<{
 }
 
 @keyframes btn-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
 <!-- 以下为按钮类型 -->
- <style scoped lang="scss">
-  .btn-btn01{
-    
-  }
+<style scoped lang="scss">
+.btn-btn01 {
+  background-color: var(--btn-primary-bg);
+  border-color: var(--btn-primary-border);
+  color: var(--btn-primary-color);
+}
+
+.btn-btn02 {
+  background-color: var(--btn-primary-bg);
+  border-color: var(--btn-primary-border);
+  color: var(--btn-primary-color);
+  border-radius: 15px;
+}
+
+.btn-btn03 {
+  background-color: var(--btn-primary-bg);
+  border-color: var(--btn-primary-border);
+  color: var(--btn-primary-color);
+}
 </style>
