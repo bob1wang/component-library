@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { buttonApi, inputApi, selectApi } from '../data/componentApi'
+import { buttonApi, inputApi, selectApi } from '@/data/componentApi'
 
 const props = defineProps({
   activeTab: {
@@ -71,7 +71,7 @@ const props = defineProps({
 
       <!-- <div class="code-section">
         <h3>代码示例</h3>
-        <pre class="code-block"><code><Button 
+        <pre class="code-block"><code><Button
   type="primary"
   size="middle"
   :loading="false"
@@ -132,7 +132,7 @@ const props = defineProps({
 // 在你的组件中需要定义对应的变量
 
 // 模板部分:
-// <Input 
+// <Input
 //   v-model="yourInputValue"
 //   size="middle"
 //   type="text"

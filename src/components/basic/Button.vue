@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { withDefaults } from 'vue'
 
-type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link ' | 'btn01' | 'btn02'
+type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link' | 'btn01' | 'round' | 'success' | 'warning' | 'danger'
 type ButtonSize = 'large' | 'middle' | 'small'
 
 withDefaults(defineProps<{
@@ -65,7 +65,7 @@ withDefaults(defineProps<{
 .btn-primary {
   background-color: var(--btn-primary-bg);
   border-color: var(--btn-primary-border);
-  color: var(--btn-primary-color);
+  color: var( --text-color-wihte);
 }
 
 .btn-primary:not(.btn-disabled):hover {
@@ -160,22 +160,47 @@ withDefaults(defineProps<{
 </style>
 <!-- 以下为按钮类型 -->
 <style scoped lang="scss">
-.btn-btn01 {
+.btn-base {
   background-color: var(--btn-primary-bg);
   border-color: var(--btn-primary-border);
   color: var(--btn-primary-color);
+  
+  &:not(.btn-disabled):hover {
+    opacity: 0.8;
+  }
+  
+  &:not(.btn-disabled):active {
+    opacity: 0.9;
+  }
 }
 
-.btn-btn02 {
-  background-color: var(--btn-primary-bg);
-  border-color: var(--btn-primary-border);
-  color: var(--btn-primary-color);
+.btn-btn01, .btn-btn03 {
+  @extend .btn-base;
+}
+
+.btn-round {
+  @extend .btn-base;
   border-radius: 15px;
 }
 
-.btn-btn03 {
-  background-color: var(--btn-primary-bg);
-  border-color: var(--btn-primary-border);
-  color: var(--btn-primary-color);
+.btn-success {
+  @extend .btn-base;
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: var( --text-color-wihte);
+}
+
+.btn-warning {
+  @extend .btn-base;
+  background-color: var(--warning-color);
+  border-color: var(--warning-color);
+  color: var( --text-color-wihte);
+}
+
+.btn-danger {
+  @extend .btn-base;
+  background-color: var(--error-color);
+  border-color: var(--error-color);
+  color: var( --text-color-wihte);
 }
 </style>

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import microButton from '../components/basic/Button.vue'
-import StyleSummary from '../components/demo/StyleSummary.vue'
-import Input from '../components/basic/Input.vue'
-import Select from '../components/basic/Select.vue'
+import microButton from '../basic/Button.vue'
+import Input from '../basic/Input.vue'
+import Select from '../basic/Select.vue'
 
 const props = defineProps({
   activeTab: {
@@ -83,19 +82,17 @@ const emit = defineEmits([
 <template>
   <div class="component-library">
     <h1>微径组件库 - 演示</h1>
-    <!-- <StyleSummary :active-component="props.activeTab" /> -->
-
 
     <!-- Button 组件演示 -->
     <div v-if="props.activeTab === 'button'" class="component-demo">
       <h2>Button 按钮</h2>
 
       <div class="demo-section">
-        <h3>演示</h3>
+
         <div class="demo-example">
-          <microButton :type="props.buttonType" 
-                 :size="props.buttonSize" 
-                 :loading="props.buttonLoading" 
+          <microButton :type="props.buttonType"
+                 :size="props.buttonSize"
+                 :loading="props.buttonLoading"
                  :disabled="props.buttonDisabled">
             {{ props.buttonLoading ? '加载中...' : '点击按钮' }}
           </microButton>
@@ -105,7 +102,7 @@ const emit = defineEmits([
           <h3>属性控制</h3>
           <div class="control-group">
             <label>类型</label>
-            <select :value="props.buttonType" 
+            <select :value="props.buttonType"
                    @change="$emit('update:buttonType', ($event.target as HTMLSelectElement).value)">
               <option value="primary">primary</option>
               <option value="default">default</option>
@@ -117,7 +114,7 @@ const emit = defineEmits([
 
           <div class="control-group">
             <label>尺寸</label>
-            <select :value="props.buttonSize" 
+            <select :value="props.buttonSize"
                    @change="$emit('update:buttonSize', ($event.target as HTMLSelectElement).value)">
               <option value="large">large</option>
               <option value="middle">middle</option>
@@ -127,8 +124,8 @@ const emit = defineEmits([
 
           <div class="control-group">
             <label>
-              <input type="checkbox" 
-                     :checked="props.buttonLoading" 
+              <input type="checkbox"
+                     :checked="props.buttonLoading"
                      @change="$emit('update:buttonLoading', ($event.target as HTMLInputElement).checked)">
               加载状态
             </label>
@@ -136,8 +133,8 @@ const emit = defineEmits([
 
           <div class="control-group">
             <label>
-              <input type="checkbox" 
-                     :checked="props.buttonDisabled" 
+              <input type="checkbox"
+                     :checked="props.buttonDisabled"
                      @change="$emit('update:buttonDisabled', ($event.target as HTMLInputElement).checked)">
               禁用状态
             </label>
@@ -151,14 +148,14 @@ const emit = defineEmits([
       <h2>Input 输入框</h2>
 
       <div class="demo-section">
-        <h3>演示</h3>
+
         <div class="demo-example">
-          <Input :modelValue="props.inputValue" 
+          <Input :modelValue="props.inputValue"
                 @update:modelValue="$emit('update:inputValue', $event)"
-                :size="props.inputSize" 
-                :type="props.inputType" 
+                :size="props.inputSize"
+                :type="props.inputType"
                 :disabled="props.inputDisabled"
-                :clearable="props.inputClearable" 
+                :clearable="props.inputClearable"
                 placeholder="请输入内容" />
           <p class="demo-value">值: {{ props.inputValue }}</p>
         </div>
@@ -167,9 +164,9 @@ const emit = defineEmits([
           <h3>属性控制</h3>
           <div class="control-group">
             <label>尺寸</label>
-            <select :value="props.inputSize" 
+            <select :value="props.inputSize"
                    @change="$emit('update:inputSize', ($event.target as HTMLSelectElement).value)">
-              
+
               <option value="large">large</option>
               <option value="middle">middle</option>
               <option value="small">small</option>
@@ -178,7 +175,7 @@ const emit = defineEmits([
 
           <div class="control-group">
             <label>类型</label>
-            <select :value="props.inputType" 
+            <select :value="props.inputType"
                    @change="$emit('update:inputType', ($event.target as HTMLSelectElement).value)">
               <option value="text">text</option>
               <option value="password">password</option>
@@ -190,8 +187,8 @@ const emit = defineEmits([
 
           <div class="control-group">
             <label>
-              <input type="checkbox" 
-                     :checked="props.inputDisabled" 
+              <input type="checkbox"
+                     :checked="props.inputDisabled"
                      @change="$emit('update:inputDisabled', ($event.target as HTMLInputElement).checked)">
               禁用状态
             </label>
@@ -199,8 +196,8 @@ const emit = defineEmits([
 
           <div class="control-group">
             <label>
-              <input type="checkbox" 
-                     :checked="props.inputClearable" 
+              <input type="checkbox"
+                     :checked="props.inputClearable"
                      @change="$emit('update:inputClearable', ($event.target as HTMLInputElement).checked)">
               可清除
             </label>
@@ -214,12 +211,12 @@ const emit = defineEmits([
       <h2>Select 选择器</h2>
 
       <div class="demo-section">
-        <h3>演示</h3>
+
         <div class="demo-example">
-          <Select :modelValue="props.selectValue" 
+          <Select :modelValue="props.selectValue"
                  @update:modelValue="$emit('update:selectValue', $event)"
-                 :size="props.selectSize" 
-                 :disabled="props.selectDisabled" 
+                 :size="props.selectSize"
+                 :disabled="props.selectDisabled"
                  :options="props.selectOptions"
                  placeholder="请选择" />
           <p class="demo-value">值: {{ props.selectValue }}</p>
@@ -229,7 +226,7 @@ const emit = defineEmits([
           <h3>属性控制</h3>
           <div class="control-group">
             <label>尺寸</label>
-            <select :value="props.selectSize" 
+            <select :value="props.selectSize"
                    @change="$emit('update:selectSize', ($event.target as HTMLSelectElement).value)">
               <option value="large">large</option>
               <option value="middle">middle</option>
@@ -239,8 +236,8 @@ const emit = defineEmits([
 
           <div class="control-group">
             <label>
-              <input type="checkbox" 
-                     :checked="props.selectDisabled" 
+              <input type="checkbox"
+                     :checked="props.selectDisabled"
                      @change="$emit('update:selectDisabled', ($event.target as HTMLInputElement).checked)">
               禁用状态
             </label>
@@ -261,7 +258,6 @@ const emit = defineEmits([
 
 h1 {
   color: var(--theme-color);
-  margin-bottom: 2rem;
   text-align: center;
 }
 
@@ -276,13 +272,18 @@ h1 {
   border: 1px solid var(--border-color-base);
   border-radius: var(--border-radius-base);
   padding: 1.5rem;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
+}
+
+.component-demo h2 {
+  text-align: center;
 }
 
 .demo-section {
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
+  justify-content: center;
 }
 
 .demo-example {
@@ -290,6 +291,10 @@ h1 {
   padding: 1rem;
   border: 1px dashed var(--border-color-base);
   border-radius: var(--border-radius-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .demo-controls {
@@ -297,6 +302,10 @@ h1 {
   padding: 1rem;
   border: 1px dashed var(--border-color-base);
   border-radius: var(--border-radius-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .control-group {

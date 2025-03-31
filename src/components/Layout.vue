@@ -22,5 +22,8 @@ import { RouterView } from 'vue-router'
 .content {
   flex: 1;
   padding: 2rem;
+  max-width: 1800px;
+  margin: 0 auto;
+  width: 100%;
 }
 </style>

@@ -3,11 +3,13 @@ import { ref, computed } from 'vue'
 
 type InputSize = 'large' | 'middle' | 'small'
 type InputType = 'text' | 'password' | 'number' | 'email' | 'search'
+type InputStyleType = 'blue' | 'default' | 'round'
 
 const props = withDefaults(defineProps<{
   modelValue: string
   size?: InputSize
   type?: InputType
+  styleType?: InputStyleType
   placeholder?: string
   disabled?: boolean
   clearable?: boolean
@@ -18,17 +20,29 @@ const props = withDefaults(defineProps<{
   clearable: false
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['input', 'update:modelValue', 'focus', 'blur'])
 
 const inputRef = ref<HTMLInputElement | null>(null)
 const isFocused = ref(false)
 
 const handleInput = (e: Event) => {
   const target = e.target as HTMLInputElement
+  emit('input', target.value)
   emit('update:modelValue', target.value)
 }
 
+const handleFocus = () => {
+  isFocused.value = true
+  emit('focus')
+}
+
+const handleBlur = () => {
+  isFocused.value = false
+  emit('blur')
+}
+
 const handleClear = () => {
+  emit('input', '')
   emit('update:modelValue', '')
   inputRef.value?.focus()
 }
@@ -36,6 +50,7 @@ const handleClear = () => {
 const classes = computed(() => [
   'input',
   `input-${props.size}`,
+  props.styleType ? `input-${props.styleType}` : '',
   {
     'input-disabled': props.disabled,
     'input-focused': isFocused.value
@@ -52,10 +67,10 @@ const classes = computed(() => [
       :placeholder="placeholder"
       :disabled="disabled"
       @input="handleInput"
-      @focus="isFocused = true"
-      @blur="isFocused = false"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
-    <span v-if="clearable && modelValue" class="input-clear" @click="handleClear">
+    <span v-if="clearable && modelValue && !disabled" class="input-clear" @click="handleClear">
       ×
     </span>
   </div>
@@ -66,7 +81,7 @@ const classes = computed(() => [
   position: relative;
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--input-border-color);
+  border: 1.5px solid var(--border-color-hasborder);
   border-radius: 4px;
   transition: all 0.3s;
 }
@@ -75,8 +90,8 @@ const classes = computed(() => [
   flex: 1;
   width: 100%;
   padding: 0 12px;
-  border: none;
   outline: none;
+  border: 1px solid var(--input-border-color);
   background: transparent;
   color: var(--input-color);
 }
@@ -111,4 +126,14 @@ const classes = computed(() => [
   cursor: pointer;
   color: var(--input-clear-color);
 }
+
+
+.input-blue {
+  border-color: var( --input-focus-border-color);
+}
+
+.input-round{
+  border-radius: 10px;
+}
+
 </style>

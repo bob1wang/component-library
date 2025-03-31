@@ -5,8 +5,8 @@ import Button from '../components/basic/Button.vue'
 import Input from '../components/basic/Input.vue'
 import Select from '../components/basic/Select.vue'
 import { buttonApi, inputApi, selectApi } from '../data/componentApi'
-import ComponentDemo from './ComponentDemo.vue'
-import ComponentApi from './ComponentApi.vue'
+import ComponentDemo from '../components/demo/ComponentDemo.vue'
+import ComponentApi from '../components/demo/ComponentApi.vue'
 import StyleSummary from '../components/demo/StyleSummary.vue'
 
 // 组件状态
@@ -38,13 +38,16 @@ const activeTab: Ref<'button' | 'input' | 'select'> = ref('button')
     <h1>微径组件库</h1>
 
     <div class="component-nav">
-      <Button :type="activeTab === 'button' ? 'primary' : 'default'" @click="activeTab = 'button'">
+      <Button :type="activeTab === 'button' ? 'primary' : 'default'" 
+      @click="activeTab = 'button'">
         Button
       </Button>
-      <!-- <Button :type="activeTab === 'input' ? 'primary' : 'default'" @click="activeTab = 'input'">
+      <Button :type="activeTab === 'input' ? 'primary' : 'default'" 
+      @click="activeTab = 'input'">
         Input
       </Button>
-      <Button :type="activeTab === 'select' ? 'primary' : 'default'" @click="activeTab = 'select'">
+      <!-- <Button :type="activeTab === 'select' ? 'primary' : 'default'"
+        @click="activeTab = 'select'">
         Select
       </Button> -->
     </div>
@@ -55,7 +58,7 @@ const activeTab: Ref<'button' | 'input' | 'select'> = ref('button')
     <!-- 组件演示区域 -->
     <div class="demo-section">
       <!-- <h2>组件演示</h2> -->
-      <ComponentDemo 
+      <ComponentDemo
         :activeTab="activeTab"
         :buttonType="buttonType"
         :buttonSize="buttonSize"
@@ -88,7 +91,7 @@ const activeTab: Ref<'button' | 'input' | 'select'> = ref('button')
     <!-- API文档区域 -->
     <div class="api-section">
       <!-- <h2>API文档</h2> -->
-      <ComponentApi 
+      <ComponentApi
         :activeTab="activeTab"
         :buttonApi="buttonApi"
         :inputApi="inputApi"

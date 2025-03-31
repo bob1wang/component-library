@@ -3,7 +3,7 @@ export const buttonApi = {
     {
       prop: 'type',
       description: '按钮类型',
-      type: "'primary' | 'default' | 'dashed' | 'text' | 'link'",
+      type: "'primary' | 'default' | 'dashed' | 'text' | 'link' | 'success' | 'warning' | 'danger'",
       defaultValue: "'default'"
     },
     {
@@ -27,7 +27,7 @@ export const buttonApi = {
   ],
   events: [
     {
-      name: 'click',
+      name: '@click',
       description: '点击按钮时触发',
       parameters: 'MouseEvent'
     }
@@ -55,6 +55,12 @@ export const inputApi = {
       defaultValue: "'text'"
     },
     {
+      prop: 'styleType',
+      description: '输入框样式类型',
+      type: " 'default' | 'blue'",
+      defaultValue: "'text'"
+    },
+    {
       prop: 'disabled',
       description: '禁用状态',
       type: 'boolean',
@@ -69,17 +75,17 @@ export const inputApi = {
   ],
   events: [
     {
-      name: 'update:modelValue',
+      name: '@input',
       description: '输入值变化时触发',
       parameters: 'string - 新的输入值'
     },
     {
-      name: 'focus',
+      name: '@focus',
       description: '输入框获得焦点时触发',
       parameters: 'FocusEvent'
     },
     {
-      name: 'blur',
+      name: '@blur',
       description: '输入框失去焦点时触发',
       parameters: 'FocusEvent'
     }
@@ -115,7 +121,7 @@ export const selectApi = {
   ],
   events: [
     {
-      name: 'update:modelValue',
+      name: '@update:modelValue',
       description: '选择值变化时触发',
       parameters: 'string | number - 新的选择值'
     }
