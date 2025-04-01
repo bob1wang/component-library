@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from '../basic/Button.vue'
 import Input from '../basic/Input.vue'
+import Select from '../basic/Select.vue'
 import { ref } from 'vue'
 
 const props = defineProps<{
@@ -39,10 +40,11 @@ const buttonStyles: ButtonStyle[] = [
 ]
 
 const inputValue = ref('')
+const selectValue = ref('')
 const inputStyles: InputStyle[] = [
-  { type: 'default', styleType: 'default', name: 'default' },
-  { type: 'default', styleType: 'blue', name: 'blue' },
-  { type: 'default', styleType: 'round', name: 'round' },
+  { type: 'default', styleType: 'default', name: ' input01-default' },
+  { type: 'default', styleType: 'blue', name: 'input02-blue' },
+  { type: 'default', styleType: 'round', name: 'input03-round' },
 ]
 
 const testinput = (e:any)=>{
@@ -56,7 +58,8 @@ const testBlur = ()=>{
 </script>
 
 <template>
-  <div class="style-summary" v-if="activeTab === 'button'">
+  <!-- 按钮组件的使用 -->
+  <div class="style-summary" v-if="props.activeTab === 'button'">
     <h1>常用样式</h1>
     <div class="button-grid">
       <div class="button-item" v-for="style in buttonStyles" :key="style.type">
@@ -67,8 +70,8 @@ const testBlur = ()=>{
       </div>
     </div>
   </div>
-
-  <div class="style-summary" v-if="activeTab === 'input'">
+  <!-- 输入框组件的使用 -->
+  <div class="style-summary" v-if="props.activeTab === 'input'">
     <h1>常用样式</h1>
     <div class="button-grid">
       <div class="button-item" v-for="style in inputStyles" :key="style.type">
@@ -81,6 +84,57 @@ const testBlur = ()=>{
           @input="testinput"
         />
         <span class="style-name" @click="copyToClipboard(style.name)">{{ style.name }}</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 选择器组件的使用 -->
+  <div class="style-summary" v-if="props.activeTab === 'select1'">
+    <h1>常用样式</h1>
+    <div class="button-grid">
+      <div class="button-item">
+        <Select 
+          v-model="selectValue"
+          name="select01-default"
+          :options="[
+            { value: 'option1', label: '选项1' },
+            { value: 'option2', label: '选项2' },
+            { value: 'option3', label: '选项3' }
+          ]"
+          placeholder="请选择"
+        />
+        <span class="style-name">select01-default</span>
+      </div>
+      
+      <div class="button-item">
+        <Select 
+          v-model="selectValue"
+          name="select02-multiple"
+          :multiple="true"
+          :options="[
+            { value: 'option1', label: '选项1' },
+            { value: 'option2', label: '选项2' },
+            { value: 'option3', label: '选项3' }
+          ]"
+          placeholder="请选择"
+        />
+        <span class="style-name">select02-multiple</span>
+      </div>
+      
+      <div class="button-item">
+        <Select 
+          class="radiu-15"
+          v-model="selectValue"
+          name="select03-filterable"
+          :filterable="true"
+          :options="[
+            { value: 'option1', label: '选项1' },
+            { value: 'option2', label: '选项2' },
+            { value: 'option3', label: '选项3' }
+          ]"
+          placeholder="请搜索"
+        />
+        <span class="style-name">select03-filterable</span>
       </div>
     </div>
   </div>

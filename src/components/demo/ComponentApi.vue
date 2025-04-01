@@ -14,7 +14,7 @@ const props = defineProps({
     <h1>微径组件库 - API说明</h1>
 
     <!-- Button API 说明 -->
-    <div v-if="activeTab === 'button'" class="component-demo">
+    <div v-if="props.activeTab === 'button'" class="component-demo">
       <h2>Button API</h2>
 
       <div class="docs-section">
@@ -60,7 +60,7 @@ const props = defineProps({
     </div>
 
     <!-- Input API 说明 -->
-    <div v-if="activeTab === 'input'" class="component-demo">
+    <div v-if="props.activeTab === 'input'" class="component-demo">
       <h2>Input API</h2>
 
       <div class="docs-section">
@@ -106,7 +106,7 @@ const props = defineProps({
     </div>
 
     <!-- Select API 说明 -->
-    <div v-if="activeTab === 'select'" class="component-demo">
+    <div v-if="props.activeTab === 'select'" class="component-demo">
       <h2>Select API</h2>
 
       <div class="docs-section">

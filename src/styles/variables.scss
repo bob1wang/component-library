@@ -6,12 +6,21 @@
   --success-color: #52c41a;
   --warning-color: #faad14;
   --error-color: #f5222d;
+  
+  --grey-color: #e6e6e6;
   --text-color: rgba(0, 0, 0, 0.85);
   --text-color-secondary: rgba(0, 0, 0, 0.45);
   --text-color-wihte:#fff;
   --border-color-base: #d9dd9;
   --border-color-hasborder: #e6e6e6;
   --background-color-base: #f5f5f5;
+
+  // 文字颜色
+  --font-color-base:#606266;
+
+  // 边框颜色
+  --border-color-grey:var(--border-color-hasborder)
+  --border-color-black:var(--text-color)
 
   // 按钮变量
   --btn-default-bg: #fff;
@@ -41,4 +50,13 @@
   --font-size-base: 14px;
   --border-radius-base: 4px;
   --padding-base: 8px 16px;
+  --base-size-5: 5px;
+  --base-size-10: 10px;
+  --base-size-15: 15px;
+  --base-size-20: 20px;
+  --base-size-30: 30px;
+
+
+
+
 }

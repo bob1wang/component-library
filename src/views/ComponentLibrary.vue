@@ -1,12 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import type { Ref } from 'vue'
 import Button from '../components/basic/Button.vue'
 import StyleSummary from '../components/demo/StyleSummary.vue'
 import ComponentDemo from '../components/demo/ComponentDemo.vue'
 import ComponentApi from '../components/demo/ComponentApi.vue'
 
-const activeTab: Ref<'button' | 'input' | 'select'> = ref('button')
+type TabType = 'button' | 'input' | 'select'
+const activeTab: Ref<TabType> = ref('button')
+const tabs = ['button', 'input', 'select'] as const
+
+const getButtonType = (tab: TabType) => computed(() => 
+  activeTab.value === tab ? 'btn01-primary' : 'btn02-default'
+)
 </script>
 
 <template>
@@ -14,18 +20,14 @@ const activeTab: Ref<'button' | 'input' | 'select'> = ref('button')
     <h1>微径组件库</h1>
 
     <div class="component-nav">
-      <Button :type="activeTab === 'button' ? 'btn01-primary' : 'btn02-default'" 
-      @click="activeTab = 'button'">
-        Button
+      <Button 
+        v-for="tab in tabs" 
+        :key="tab"
+        :type="getButtonType(tab).value"
+        @click="activeTab = tab"
+      >
+        {{ tab}}
       </Button>
-      <Button :type="activeTab === 'input' ? 'btn01-primary' : 'btn02-default'" 
-      @click="activeTab = 'input'">
-        Input
-      </Button>
-      <!-- <Button :type="activeTab === 'select' ? 'btn01-primary' : 'btn02-default'"
-        @click="activeTab = 'select'">
-        Select
-      </Button> -->
     </div>
 
     <!-- 常用组件样式展示区域 -->

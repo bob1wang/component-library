@@ -49,7 +49,7 @@ export const buttonApi = {
 export const inputApi = {
   props: [
     {
-      prop: "modelValue",
+      prop: "v-model",
       description: "绑定值",
       type: "string",
       defaultValue: "-",
@@ -107,9 +107,9 @@ export const inputApi = {
 export const selectApi = {
   props: [
     {
-      prop: "modelValue",
+      prop: "v-model",
       description: "绑定值",
-      type: "string | number",
+      type: "string | number | (string | number)[]",
       defaultValue: "-",
     },
     {
@@ -130,12 +130,41 @@ export const selectApi = {
       type: "boolean",
       defaultValue: "false",
     },
+    {
+      prop: "multiple",
+      description: "是否多选",
+      type: "boolean",
+      defaultValue: "false",
+    },
+    {
+      prop: "collapseTags",
+      description: "多选时是否折叠标签",
+      type: "boolean",
+      defaultValue: "false",
+    },
+    {
+      prop: "filterable",
+      description: "是否可搜索选项",
+      type: "boolean",
+      defaultValue: "false",
+    },
   ],
   events: [
+   
     {
-      name: "@update:modelValue",
+      name: "@change",
       description: "选择值变化时触发",
-      parameters: "string | number - 新的选择值",
+      parameters: "string | number | (string | number)[] - 新的选择值",
     },
+    // {
+    //   name: "@blur",
+    //   description: "当 input 失去焦点时触发",
+    //   parameters: "Event",
+    // },
+    // {
+    //   name: "@focus",
+    //   description: "当 input 获得焦点时触发",
+    //   parameters: "Event",
+    // },
   ],
 };
