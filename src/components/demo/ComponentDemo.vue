@@ -1,100 +1,54 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import microButton from '../basic/Button.vue'
 import Input from '../basic/Input.vue'
 import Select from '../basic/Select.vue'
+import { buttonApi, inputApi, selectApi, ButtonType, ButtonSize, InputType, InputSize, SelectSize } from '../../data/componentApi'
 
 const props = defineProps({
   activeTab: {
     type: String as () => 'button' | 'input' | 'select',
     required: true
-  },
-  buttonType: {
-    type: String as () => 'primary' | 'default' | 'dashed' | 'text' | 'link',
-    required: true
-  },
-  buttonSize: {
-    type: String as () => 'large' | 'middle' | 'small',
-    required: true
-  },
-  buttonLoading: {
-    type: Boolean,
-    required: true
-  },
-  buttonDisabled: {
-    type: Boolean,
-    required: true
-  },
-  inputValue: {
-    type: String,
-    required: true
-  },
-  inputSize: {
-    type: String as () => 'large' | 'middle' | 'small',
-    required: true
-  },
-  inputType: {
-    type: String as () => 'text' | 'password' | 'number' | 'email' | 'search',
-    required: true
-  },
-  inputDisabled: {
-    type: Boolean,
-    required: true
-  },
-  inputClearable: {
-    type: Boolean,
-    required: true
-  },
-  selectValue: {
-    type: String,
-    required: true
-  },
-  selectSize: {
-    type: String as () => 'large' | 'middle' | 'small',
-    required: true
-  },
-  selectDisabled: {
-    type: Boolean,
-    required: true
-  },
-  selectOptions: {
-    type: Array as () => Array<{value: string, label: string, disabled?: boolean}>,
-    required: true
   }
 })
 
-const emit = defineEmits([
-  'update:activeTab',
-  'update:buttonType',
-  'update:buttonSize',
-  'update:buttonLoading',
-  'update:buttonDisabled',
-  'update:inputValue',
-  'update:inputSize',
-  'update:inputType',
-  'update:inputDisabled',
-  'update:inputClearable',
-  'update:selectValue',
-  'update:selectSize',
-  'update:selectDisabled'
+// 内部状态管理
+const buttonType = ref<ButtonType>('btn01-primary')
+const buttonSize = ref<'large' | 'middle' | 'small'>('middle')
+const buttonLoading = ref(false)
+const buttonDisabled = ref(false)
+
+const inputValue = ref('')
+const inputSize = ref<'large' | 'middle' | 'small'>('middle')
+const inputType = ref<'text' | 'password' | 'number' | 'email' | 'search'>('text')
+const inputDisabled = ref(false)
+const inputClearable = ref(true)
+
+const selectValue = ref('')
+const selectSize = ref<'large' | 'middle' | 'small'>('middle')
+const selectDisabled = ref(false)
+const selectOptions = ref([
+  { value: 'option1', label: '选项1' },
+  { value: 'option2', label: '选项2' },
+  { value: 'option3', label: '选项3', disabled: true }
 ])
 </script>
 
 <template>
   <div class="component-library">
-    <h1>微径组件库 - 演示</h1>
 
     <!-- Button 组件演示 -->
     <div v-if="props.activeTab === 'button'" class="component-demo">
-      <h2>Button 按钮</h2>
+      <h1>Button 按钮的更多演示</h1>
 
       <div class="demo-section">
 
         <div class="demo-example">
-          <microButton :type="props.buttonType"
-                 :size="props.buttonSize"
-                 :loading="props.buttonLoading"
-                 :disabled="props.buttonDisabled">
-            {{ props.buttonLoading ? '加载中...' : '点击按钮' }}
+          <microButton :type="buttonType"
+                 :size="buttonSize"
+                 :loading="buttonLoading"
+                 :disabled="buttonDisabled">
+            {{ buttonLoading ? '加载中...' : '点击按钮' }}
           </microButton>
         </div>
 
@@ -102,31 +56,33 @@ const emit = defineEmits([
           <h3>属性控制</h3>
           <div class="control-group">
             <label>类型</label>
-            <select :value="props.buttonType"
-                   @change="$emit('update:buttonType', ($event.target as HTMLSelectElement).value)">
-              <option value="primary">primary</option>
-              <option value="default">default</option>
-              <option value="dashed">dashed</option>
-              <option value="text">text</option>
-              <option value="link">link</option>
+            <select :value="buttonType"
+                   @change="buttonType = ($event.target as HTMLSelectElement).value as ButtonType">
+              <option v-for="type in buttonApi.props[0].type.replace(/'/g, '').split(' | ')" 
+                      :key="type" 
+                      :value="type">
+                {{ type }}
+              </option>
             </select>
           </div>
 
           <div class="control-group">
             <label>尺寸</label>
-            <select :value="props.buttonSize"
-                   @change="$emit('update:buttonSize', ($event.target as HTMLSelectElement).value)">
-              <option value="large">large</option>
-              <option value="middle">middle</option>
-              <option value="small">small</option>
+            <select :value="buttonSize"
+                   @change="buttonSize = ($event.target as HTMLSelectElement).value as 'large' | 'middle' | 'small'">
+              <option v-for="size in buttonApi.props[1].type.replace(/'/g, '').split(' | ')" 
+                      :key="size" 
+                      :value="size">
+                {{ size }}
+              </option>
             </select>
           </div>
 
           <div class="control-group">
             <label>
               <input type="checkbox"
-                     :checked="props.buttonLoading"
-                     @change="$emit('update:buttonLoading', ($event.target as HTMLInputElement).checked)">
+                     :checked="buttonLoading"
+                     @change="buttonLoading = ($event.target as HTMLInputElement).checked">
               加载状态
             </label>
           </div>
@@ -134,8 +90,8 @@ const emit = defineEmits([
           <div class="control-group">
             <label>
               <input type="checkbox"
-                     :checked="props.buttonDisabled"
-                     @change="$emit('update:buttonDisabled', ($event.target as HTMLInputElement).checked)">
+                     :checked="buttonDisabled"
+                     @change="buttonDisabled = ($event.target as HTMLInputElement).checked">
               禁用状态
             </label>
           </div>
@@ -145,38 +101,40 @@ const emit = defineEmits([
 
     <!-- Input 组件演示 -->
     <div v-if="props.activeTab === 'input'" class="component-demo">
-      <h2>Input 输入框</h2>
+      <h1>Input 输入框的更多演示</h1>
 
       <div class="demo-section">
 
         <div class="demo-example">
-          <Input :modelValue="props.inputValue"
-                @update:modelValue="$emit('update:inputValue', $event)"
-                :size="props.inputSize"
-                :type="props.inputType"
-                :disabled="props.inputDisabled"
-                :clearable="props.inputClearable"
+          <Input :modelValue="inputValue"
+                @update:modelValue="inputValue = $event"
+                :size="inputSize"
+                :type="inputType"
+                :disabled="inputDisabled"
+                :clearable="inputClearable"
                 placeholder="请输入内容" />
-          <p class="demo-value">值: {{ props.inputValue }}</p>
+          <p class="demo-value">值: {{ inputValue }}</p>
         </div>
 
         <div class="demo-controls">
           <h3>属性控制</h3>
           <div class="control-group">
             <label>尺寸</label>
-            <select :value="props.inputSize"
-                   @change="$emit('update:inputSize', ($event.target as HTMLSelectElement).value)">
+            <select :value="inputSize"
+                   @change="inputSize = ($event.target as HTMLSelectElement).value as 'large' | 'middle' | 'small'">
 
-              <option value="large">large</option>
-              <option value="middle">middle</option>
-              <option value="small">small</option>
+              <option v-for="size in inputApi.props[1].type.replace(/'/g, '').split(' | ')" 
+                      :key="size" 
+                      :value="size">
+                {{ size }}
+              </option>
             </select>
           </div>
 
           <div class="control-group">
             <label>类型</label>
-            <select :value="props.inputType"
-                   @change="$emit('update:inputType', ($event.target as HTMLSelectElement).value)">
+            <select :value="inputType"
+                   @change="inputType = ($event.target as HTMLSelectElement).value as 'text' | 'password' | 'number' | 'email' | 'search'">
               <option value="text">text</option>
               <option value="password">password</option>
               <option value="number">number</option>
@@ -188,8 +146,8 @@ const emit = defineEmits([
           <div class="control-group">
             <label>
               <input type="checkbox"
-                     :checked="props.inputDisabled"
-                     @change="$emit('update:inputDisabled', ($event.target as HTMLInputElement).checked)">
+                     :checked="inputDisabled"
+                     @change="inputDisabled = ($event.target as HTMLInputElement).checked">
               禁用状态
             </label>
           </div>
@@ -197,8 +155,8 @@ const emit = defineEmits([
           <div class="control-group">
             <label>
               <input type="checkbox"
-                     :checked="props.inputClearable"
-                     @change="$emit('update:inputClearable', ($event.target as HTMLInputElement).checked)">
+                     :checked="inputClearable"
+                     @change="inputClearable = ($event.target as HTMLInputElement).checked">
               可清除
             </label>
           </div>
@@ -208,43 +166,46 @@ const emit = defineEmits([
 
     <!-- Select 组件演示 -->
     <div v-if="props.activeTab === 'select'" class="component-demo">
-      <h2>Select 选择器</h2>
+      <h1>Select 选择器的更多演示</h1>
 
       <div class="demo-section">
 
         <div class="demo-example">
-          <Select :modelValue="props.selectValue"
-                 @update:modelValue="$emit('update:selectValue', $event)"
-                 :size="props.selectSize"
-                 :disabled="props.selectDisabled"
-                 :options="props.selectOptions"
+          <Select :modelValue="selectValue"
+                 @update:modelValue="selectValue = $event"
+                 :size="selectSize"
+                 :disabled="selectDisabled"
+                 :options="selectOptions"
                  placeholder="请选择" />
-          <p class="demo-value">值: {{ props.selectValue }}</p>
+          <p class="demo-value">值: {{ selectValue }}</p>
         </div>
 
         <div class="demo-controls">
           <h3>属性控制</h3>
           <div class="control-group">
             <label>尺寸</label>
-            <select :value="props.selectSize"
-                   @change="$emit('update:selectSize', ($event.target as HTMLSelectElement).value)">
-              <option value="large">large</option>
-              <option value="middle">middle</option>
-              <option value="small">small</option>
+            <select :value="selectSize"
+                   @change="selectSize = ($event.target as HTMLSelectElement).value as 'large' | 'middle' | 'small'">
+              <option v-for="size in selectApi.props[2].type.replace(/'/g, '').split(' | ')" 
+                      :key="size" 
+                      :value="size">
+                {{ size }}
+              </option>
             </select>
           </div>
 
           <div class="control-group">
             <label>
               <input type="checkbox"
-                     :checked="props.selectDisabled"
-                     @change="$emit('update:selectDisabled', ($event.target as HTMLInputElement).checked)">
+                     :checked="selectDisabled"
+                     @change="selectDisabled = ($event.target as HTMLInputElement).checked">
               禁用状态
             </label>
           </div>
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 

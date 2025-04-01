@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { withDefaults } from 'vue'
 
-type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link' | 'btn01' | 'round' | 'success' | 'warning' | 'danger'
+type ButtonType = 'btn01-primary' | 'btn02-default' | 'btn03-dashed' | 'btn04-text' | 'btn05-link' | 'btn06-round' | 'btn07-success' | 'btn08-warning' | 'btn09-danger'
 type ButtonSize = 'large' | 'middle' | 'small'
 
 withDefaults(defineProps<{
@@ -11,7 +11,7 @@ withDefaults(defineProps<{
   disabled?: boolean
   htmlType?: 'button' | 'submit' | 'reset'
 }>(), {
-  type: 'primary',
+  type: 'btn01-primary',
   size: 'middle',
   loading: false,
   disabled: false,
@@ -48,75 +48,75 @@ withDefaults(defineProps<{
   outline: none;
 }
 
-.btn-default {
+.btn-btn02-default {
   background-color: var(--btn-default-bg);
   border-color: var(--btn-default-border);
   color: var(--btn-default-color);
 }
 
-.btn-default:not(.btn-disabled):hover {
+.btn-btn02-default:not(.btn-disabled):hover {
   opacity: 0.8;
 }
 
-.btn-default:not(.btn-disabled):active {
+.btn-btn02-default:not(.btn-disabled):active {
   opacity: 0.9;
 }
 
-.btn-primary {
+.btn-btn01-primary {
   background-color: var(--btn-primary-bg);
   border-color: var(--btn-primary-border);
   color: var( --text-color-wihte);
 }
 
-.btn-primary:not(.btn-disabled):hover {
+.btn-btn01-primary:not(.btn-disabled):hover {
   opacity: 0.8;
 }
 
-.btn-primary:not(.btn-disabled):active {
+.btn-btn01-primary:not(.btn-disabled):active {
   opacity: 0.9;
 }
 
-.btn-dashed {
+.btn-btn03-dashed {
   background-color: var(--btn-dashed-bg);
   border-color: var(--btn-dashed-border);
   border-style: dashed;
   color: var(--btn-dashed-color);
 }
 
-.btn-dashed:not(.btn-disabled):hover {
+.btn-btn03-dashed:not(.btn-disabled):hover {
   opacity: 0.8;
 }
 
-.btn-dashed:not(.btn-disabled):active {
+.btn-btn03-dashed:not(.btn-disabled):active {
   opacity: 0.9;
 }
 
-.btn-text {
+.btn-btn04-text {
   background-color: transparent;
   border-color: transparent;
   color: var(--btn-text-color);
 }
 
-.btn-text:not(.btn-disabled):hover {
+.btn-btn04-text:not(.btn-disabled):hover {
   opacity: 0.8;
 }
 
-.btn-text:not(.btn-disabled):active {
+.btn-btn04-text:not(.btn-disabled):active {
   opacity: 0.9;
 }
 
-.btn-link {
+.btn-btn05-link {
   background-color: transparent;
   border-color: transparent;
   color: var(--btn-link-color);
 }
 
-.btn-link:not(.btn-disabled):hover {
+.btn-btn05-link:not(.btn-disabled):hover {
   opacity: 0.8;
   text-decoration: underline;
 }
 
-.btn-link:not(.btn-disabled):active {
+.btn-btn05-link:not(.btn-disabled):active {
   opacity: 0.9;
 }
 
@@ -178,26 +178,26 @@ withDefaults(defineProps<{
   @extend .btn-base;
 }
 
-.btn-round {
+.btn-btn06-round {
   @extend .btn-base;
   border-radius: 15px;
 }
 
-.btn-success {
+.btn-btn07-success {
   @extend .btn-base;
   background-color: var(--success-color);
   border-color: var(--success-color);
   color: var( --text-color-wihte);
 }
 
-.btn-warning {
+.btn-btn08-warning {
   @extend .btn-base;
   background-color: var(--warning-color);
   border-color: var(--warning-color);
   color: var( --text-color-wihte);
 }
 
-.btn-danger {
+.btn-btn09-danger {
   @extend .btn-base;
   background-color: var(--error-color);
   border-color: var(--error-color);

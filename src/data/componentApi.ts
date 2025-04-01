@@ -1,129 +1,141 @@
+// 类型定义
+// 按钮
+export type ButtonType = 'btn01-primary' | 'btn02-default' | 'btn03-dashed' | 'btn04-text' | 'btn05-link' | 'btn06-round' | 'btn07-success' | 'btn08-warning' | 'btn09-danger';
+export type ButtonSize = 'large' | 'middle' | 'small';
+// 输入框
+export type InputType = 'text' | 'password' | 'number' | 'email' | 'search';
+export type InputSize = 'large' | 'middle' | 'small';
+export type styleType =  'blue' | 'default' | 'round'
+
+// 选择器
+export type SelectSize = 'large' | 'middle' | 'small';
+
 export const buttonApi = {
   props: [
     {
-      prop: 'type',
-      description: '按钮类型',
-      type: "'primary' | 'default' | 'dashed' | 'text' | 'link' | 'success' | 'warning' | 'danger'",
-      defaultValue: "'default'"
+      prop: "type",
+      description: "按钮类型",
+      type: "'btn01-primary' | 'btn02-default' | 'btn03-dashed' | 'btn04-text' | 'btn05-link' | 'btn06-round' | 'btn07-success' | 'btn08-warning' | 'btn09-danger'",
+      defaultValue: "'default'",
     },
     {
-      prop: 'size',
-      description: '按钮尺寸',
+      prop: "size",
+      description: "按钮尺寸",
       type: "'large' | 'middle' | 'small'",
-      defaultValue: "'middle'"
+      defaultValue: "'middle'",
     },
     {
-      prop: 'loading',
-      description: '加载状态',
-      type: 'boolean',
-      defaultValue: 'false'
+      prop: "loading",
+      description: "加载状态",
+      type: "boolean",
+      defaultValue: "false",
     },
     {
-      prop: 'disabled',
-      description: '禁用状态',
-      type: 'boolean',
-      defaultValue: 'false'
-    }
+      prop: "disabled",
+      description: "禁用状态",
+      type: "boolean",
+      defaultValue: "false",
+    },
   ],
   events: [
     {
-      name: '@click',
-      description: '点击按钮时触发',
-      parameters: 'MouseEvent'
-    }
-  ]
-}
+      name: "@click",
+      description: "点击按钮时触发",
+      parameters: "MouseEvent",
+    },
+  ],
+};
 
 export const inputApi = {
   props: [
     {
-      prop: 'modelValue',
-      description: '绑定值',
-      type: 'string',
-      defaultValue: '-'
+      prop: "modelValue",
+      description: "绑定值",
+      type: "string",
+      defaultValue: "-",
     },
     {
-      prop: 'size',
-      description: '输入框尺寸',
+      prop: "size",
+      description: "输入框尺寸",
       type: "'large' | 'middle' | 'small'",
-      defaultValue: "'middle'"
+      defaultValue: "'middle'",
     },
     {
-      prop: 'type',
-      description: '输入框类型',
+      prop: "type",
+      description: "输入框类型",
       type: "'text' | 'password' | 'number' | 'email' | 'search'",
-      defaultValue: "'text'"
+      defaultValue: "'text'",
     },
     {
-      prop: 'styleType',
-      description: '输入框样式类型',
+      prop: "styleType",
+      description: "输入框样式类型",
       type: " 'default' | 'blue'",
-      defaultValue: "'text'"
+      defaultValue: "'text'",
     },
     {
-      prop: 'disabled',
-      description: '禁用状态',
-      type: 'boolean',
-      defaultValue: 'false'
+      prop: "disabled",
+      description: "禁用状态",
+      type: "boolean",
+      defaultValue: "false",
     },
     {
-      prop: 'clearable',
-      description: '是否可清除',
-      type: 'boolean',
-      defaultValue: 'false'
-    }
+      prop: "clearable",
+      description: "是否可清除",
+      type: "boolean",
+      defaultValue: "false",
+    },
   ],
   events: [
     {
-      name: '@input',
-      description: '输入值变化时触发',
-      parameters: 'string - 新的输入值'
+      name: "@input",
+      description: "输入值变化时触发",
+      parameters: "string - 新的输入值",
     },
     {
-      name: '@focus',
-      description: '输入框获得焦点时触发',
-      parameters: 'FocusEvent'
+      name: "@focus",
+      description: "输入框获得焦点时触发",
+      parameters: "FocusEvent",
     },
     {
-      name: '@blur',
-      description: '输入框失去焦点时触发',
-      parameters: 'FocusEvent'
-    }
-  ]
-}
+      name: "@blur",
+      description: "输入框失去焦点时触发",
+      parameters: "FocusEvent",
+    },
+  ],
+};
 
 export const selectApi = {
   props: [
     {
-      prop: 'modelValue',
-      description: '绑定值',
-      type: 'string | number',
-      defaultValue: '-'
+      prop: "modelValue",
+      description: "绑定值",
+      type: "string | number",
+      defaultValue: "-",
     },
     {
-      prop: 'options',
-      description: '选项数据',
-      type: 'Array<{value: string|number, label: string, disabled?: boolean}>',
-      defaultValue: '[]'
+      prop: "options",
+      description: "选项数据",
+      type: "Array<{value: string|number, label: string, disabled?: boolean}>",
+      defaultValue: "[]",
     },
     {
-      prop: 'size',
-      description: '选择器尺寸',
+      prop: "size",
+      description: "选择器尺寸",
       type: "'large' | 'middle' | 'small'",
-      defaultValue: "'middle'"
+      defaultValue: "'middle'",
     },
     {
-      prop: 'disabled',
-      description: '禁用状态',
-      type: 'boolean',
-      defaultValue: 'false'
-    }
+      prop: "disabled",
+      description: "禁用状态",
+      type: "boolean",
+      defaultValue: "false",
+    },
   ],
   events: [
     {
-      name: '@update:modelValue',
-      description: '选择值变化时触发',
-      parameters: 'string | number - 新的选择值'
-    }
-  ]
-}
+      name: "@update:modelValue",
+      description: "选择值变化时触发",
+      parameters: "string | number - 新的选择值",
+    },
+  ],
+};

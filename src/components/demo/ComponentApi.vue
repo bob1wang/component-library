@@ -5,18 +5,6 @@ const props = defineProps({
   activeTab: {
     type: String as () => 'button' | 'input' | 'select',
     required: true
-  },
-  buttonApi: {
-    type: Object as () => typeof buttonApi,
-    required: true
-  },
-  inputApi: {
-    type: Object as () => typeof inputApi,
-    required: true
-  },
-  selectApi: {
-    type: Object as () => typeof selectApi,
-    required: true
   }
 })
 </script>
@@ -69,17 +57,6 @@ const props = defineProps({
         </table>
       </div>
 
-      <!-- <div class="code-section">
-        <h3>代码示例</h3>
-        <pre class="code-block"><code><Button
-  type="primary"
-  size="middle"
-  :loading="false"
-  :disabled="false"
->
-  点击按钮
-</Button></code></pre>
-      </div> -->
     </div>
 
     <!-- Input API 说明 -->
@@ -126,24 +103,6 @@ const props = defineProps({
         </table>
       </div>
 
-      <!-- <div class="code-section">
-        <h3>代码示例</h3>
-        <pre class="code-block"><code>// 示例代码
-// 在你的组件中需要定义对应的变量
-
-// 模板部分:
-// <Input
-//   v-model="yourInputValue"
-//   size="middle"
-//   type="text"
-//   :disabled="false"
-//   :clearable="true"
-//   placeholder="请输入内容"
-// />
-
-// 脚本部分:
-// const yourInputValue = ref('')</code></pre>
-      </div> -->
     </div>
 
     <!-- Select API 说明 -->
@@ -190,28 +149,6 @@ const props = defineProps({
         </table>
       </div>
 
-      <!-- <div class="code-section">
-        <h3>代码示例</h3>
-        <pre class="code-block"><code>// 示例代码
-// 在你的组件中需要定义对应的变量
-
-// 模板部分:
-// <Select
-//   v-model="selectedValue"
-//   size="middle"
-//   :disabled="false"
-//   :options="options"
-//   placeholder="请选择"
-// />
-
-// 脚本部分:
-// const selectedValue = ref('')
-// const options = [
-//   { value: 'option1', label: '选项1' },
-//   { value: 'option2', label: '选项2' },
-//   { value: 'option3', label: '选项3', disabled: true }
-// ]</code></pre>
-      </div> -->
     </div>
   </div>
 </template>

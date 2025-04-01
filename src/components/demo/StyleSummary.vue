@@ -17,32 +17,32 @@ const copyToClipboard = async (text: string) => {
 }
 
 interface ButtonStyle {
-  type: 'primary' | 'default' | 'dashed' | 'text' | 'link' | 'round' | 'success' | 'warning' | 'danger'
+  type: 'btn01-primary' | 'btn02-default' | 'btn03-dashed' | 'btn04-text' | 'btn05-link' | 'btn06-round' | 'btn07-success' | 'btn08-warning' | 'btn09-danger'
   name: string
 }
 
-// interface InputStyle {
-//   type: 'default' | 'large' | 'small' | 'disabled' | 'error'
-//   styleType:'blue' | 'default' | 'round'
-//   name: string
-// }
+interface InputStyle {
+  type: 'default' | 'large' | 'small' | 'disabled' | 'error'
+  styleType: 'blue' | 'default' | 'round'
+  name: string
+}
 
 const buttonStyles: ButtonStyle[] = [
-  { type: 'primary', name: 'primary' },
-  { type: 'dashed', name: 'dashed' },
-  { type: 'text', name: 'text' },
-  { type: 'link', name: 'link' },
-  { type: 'round', name: 'round' },
-  { type: 'success', name: 'success' },
-  { type: 'warning', name: 'warning' },
-  { type: 'danger', name: 'danger' }
+  { type: 'btn01-primary', name: 'btn01-primary' },
+  { type: 'btn03-dashed', name: 'btn03-dashed' },
+  { type: 'btn04-text', name: 'btn04-text' },
+  { type: 'btn05-link', name: 'btn05-link' },
+  { type: 'btn06-round', name: 'btn06-round' },
+  { type: 'btn07-success', name: 'btn07-success' },
+  { type: 'btn08-warning', name: 'btn08-warning' },
+  { type: 'btn09-danger', name: 'btn09-danger' }
 ]
 
 const inputValue = ref('')
-const inputStyles= [
-  { type: 'default',styleType:'default', name: 'default' },
-  { type: 'default',styleType:'blue', name: 'blue' },
-  { type: 'default',styleType:'round', name: 'round' },
+const inputStyles: InputStyle[] = [
+  { type: 'default', styleType: 'default', name: 'default' },
+  { type: 'default', styleType: 'blue', name: 'blue' },
+  { type: 'default', styleType: 'round', name: 'round' },
 ]
 
 const testinput = (e:any)=>{
@@ -89,6 +89,7 @@ const testBlur = ()=>{
 <style scoped>
 .style-summary {
   margin: 3rem auto;
+  margin-bottom: 0;
   max-width: 800px;
   text-align: center;
 }
